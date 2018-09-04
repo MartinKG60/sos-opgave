@@ -1,3 +1,14 @@
+
+/* Normalt ville man selvfølgelig bruge SASS eller LESS, men det var lidt overkill i dette tilfælde */
+
+header img {
+    margin-top: 10px;
+}
+
+header h1 {
+    margin: 0;
+}
+
 #post-list .body {
     font-size: 12px;
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title></title>
+    <title>SOS opgave den 02/09/2018</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
@@ -13,10 +13,17 @@
 </head>
 
 <body ng-app="app" class="container">
-    <h1>SOS opgave den 02/09/2018</h1>
+    <header class="row">
+        <div class="col s4">
+            <img src="https://www.sos.eu/dist/images/sos_logo_primary.svg" width="200" />
+        </div>
+        <div class="col s8">
+            <h1>SOS opgave den 02/09/2018</h1>
+        </div>
+    </header>
 
     <div ng-controller="postsCtrl">
-        <div class="row">
+        <section class="row">
             <form class="col s12" id="form-post" name="postsForm" ng-submit="addPost()">
                 <div class="row">
                     <div class="input-field col s12">
@@ -32,7 +39,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="userid" type="text" class="validate" name="newUserId" ng-model="newUserId" required>
+                        <input id="userid" type="number" class="validate" name="newUserId" ng-model="newUserId"
+                            required>
                         <label for="userid">User ID</label>
                     </div>
                 </div>
@@ -40,9 +48,9 @@
                     <i class="material-icons right">send</i>
                 </button>
             </form>
-        </div>
+        </section>
 
-        <div class="row">
+        <section class="row">
             <div class="col s6">
                 <h5>Liste af items sorteret på title</h5>
                 <div>
@@ -72,13 +80,12 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
     <script type="text/javascript" src="assets/js/list.js"></script>
-    <script type="text/javascript" src="assets/js/post.js"></script>
 
 </body>
 
