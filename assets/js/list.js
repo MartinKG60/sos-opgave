@@ -1,4 +1,5 @@
 const app = angular.module("app", []);
+const btnSubmit = document.getElementById("button-submit");
 
 app.controller("postsCtrl", function ($scope, $http) {
     $http.get('http://jsonplaceholder.typicode.com/posts').
@@ -8,6 +9,35 @@ app.controller("postsCtrl", function ($scope, $http) {
     error(function (data) {
         console.log("Error: " + data);
     });
+
+    $scope.addPost = function () {
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                body: JSON.stringify({
+                    title: $scope.newTitle,
+                    body: $scope.newBody,
+                    userId: $scope.newUserId
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+            .then(response => response.json())
+            .then((json) => {
+                // $scope.posts.push({
+                //     'id': json.id,
+                //     'title': json.title,
+                //     'body': json.body,
+                //     'userId': json.userId
+                // })
+                $scope.posts.push({
+                    'title': "adsad",
+                    'body': "asdfgsfgffsg",
+                    'userId': 1
+                })
+                console.log(json);
+            });
+    }
 });
 
 app.controller("bodiesCtrl", function ($scope, $http) {
@@ -22,7 +52,6 @@ app.controller("bodiesCtrl", function ($scope, $http) {
             splitBodyText.push(...bodyText.split(" "));
         }
 
-        //console.log(splitBodyText);
         var countWords = filterBodies(splitBodyText);
         $scope.bodies = countWords;
     }).

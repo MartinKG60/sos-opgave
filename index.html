@@ -8,38 +8,77 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body ng-app="app" class="container">
     <h1>SOS opgave den 02/09/2018</h1>
-    <div class="row">
-        <div class="col s6">
-            <h5>Liste af items sorteret på title</h5>
-            <div ng-controller="postsCtrl">
-                <ul class="collection" ng-repeat="post in posts | limitTo: 999 | orderBy: 'title' ">
-                    <li class="collection-item">
-                        <h6 class="title">
-                            ID {{post.id}}:
-                            <strong>
-                                {{post.title}}
-                            </strong>
-                        </h6>
-                    </li>
-                </ul>
-            </div>
+
+    <div ng-controller="postsCtrl">
+        <div class="row">
+            <form class="col s12" id="form-post" name="postsForm" ng-submit="addPost()">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="title" type="text" class="validate" name="newTitle" ng-model="newTitle" required>
+                        <label for="title">Title</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="body" class="materialize-textarea" name="newBody" ng-model="newBody"></textarea>
+                        <label for="body">Body text</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="userid" type="text" class="validate" name="newUserId" ng-model="newUserId" required>
+                        <label for="userid">User ID</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" id="button-submit">Add post
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
         </div>
-        <div class="col s6">
-            <h5>Liste af filtreret body text</h5>
-            <div ng-controller="bodiesCtrl">
-                    <ul class="collection" ng-repeat="item in bodies | orderBy: 'id' ">
-                    <li class="collection-item">Ordet <strong>"{{item.value}}"</strong> forekommer <strong>{{item.count}}</strong> antal gange</li>
-                </ul>
+
+        <div class="row">
+            <div class="col s6">
+                <h5>Liste af items sorteret på title</h5>
+                <div>
+                    <ul class="collection" id="post-list">
+                        <li ng-repeat="post in posts | limitTo: 999 | orderBy: 'title' " class="collection-item">
+                            <h6 class="title">
+                                ID {{post.id}}:
+                                <strong>{{post.title}}</strong>
+                            </h6>
+                            <p class="body">
+                                {{post.body}}
+                            </p>
+                            <i class="user-id">
+                                userid: {{post.userId}}
+                            </i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s6">
+                <h5>Liste af filtreret body text</h5>
+                <div ng-controller="bodiesCtrl">
+                    <ul class="collection">
+                        <li class="collection-item" ng-repeat="item in bodies | orderBy: 'id' ">Ordet <strong>"{{item.value}}"</strong>
+                            forekommer <strong>{{item.count}}</strong>
+                            antal gange</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
     <script type="text/javascript" src="assets/js/list.js"></script>
+    <script type="text/javascript" src="assets/js/post.js"></script>
 
 </body>
 
